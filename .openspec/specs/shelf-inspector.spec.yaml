@@ -1,0 +1,73 @@
+title: "shelf-inspector"
+slug: "shelf-inspector"
+type: feature
+status: review
+author: "Claude"
+created_at: "2026-07-10"
+updated_at: "2026-07-10"
+
+roles:
+  implementer: "@arananet"
+  reviewer: "@arananet"
+  qa: "@arananet"
+  product_owner: "@arananet"
+
+description: |
+  Build a privacy-first web application that runs object detection entirely
+  inside the browser using LiteRT.js and a .tflite model. Users can upload
+  images or use a webcam, run local inference, see bounding boxes with labels
+  and confidence scores, view shelf-analysis summaries, compare performance
+  metrics, and export results as JSON. No images or inference data leave the
+  device.
+
+acceptance_criteria:
+  - "Given an image file, when the user uploads it via drag-and-drop or file picker, then the image is displayed in the detection view"
+  - "Given a device with a camera, when the user starts the webcam, then live video frames are displayed and inference runs without overlapping calls"
+  - "Given a loaded model and an input image, when inference completes, then bounding boxes, class labels, and confidence percentages are overlaid on the image"
+  - "Given detection results, when the user views the shelf summary, then total objects, counts by class, average confidence, detection density, estimated occupancy, and estimated empty space are shown"
+  - "Given detection results, when the user clicks export, then a JSON file matching the AnalysisReport schema is downloaded without image data"
+  - "Given a browser with WebGPU support, when the app loads, then inference uses the WebGPU backend"
+  - "Given a browser without WebGPU, when the app loads, then inference falls back to Wasm/CPU and the user is informed"
+  - "Given no model file at the expected path, when the app loads, then a clear missing-model screen is displayed with instructions"
+  - "Given the application is running, then no images, camera frames, or inference inputs are sent to any server"
+  - "Given the performance panel, when inference runs, then model load time, compilation time, inference latency, rolling mean, FPS, and active backend are displayed"
+  - "Given the detection view, when the user adjusts the confidence threshold slider, then detections below the threshold are hidden"
+  - "Given all controls, when navigated via keyboard, then focus states are visible and all controls are accessible"
+
+test_plan:
+  - "Unit test: bounding-box coordinate conversion correctly maps normalized coords to pixel coords"
+  - "Unit test: letterbox coordinate reversal correctly removes padding offsets"
+  - "Unit test: NMS filters overlapping boxes by IoU threshold"
+  - "Unit test: confidence filtering removes detections below threshold"
+  - "Unit test: shelf-summary calculations produce correct totals, averages, and occupancy estimates"
+  - "Unit test: JSON report creation matches AnalysisReport schema and contains no image data"
+  - "Unit test: backend selection prefers WebGPU and falls back to Wasm"
+  - "Unit test: model-configuration validation rejects invalid configs"
+  - "Component test: image upload triggers detection flow"
+  - "Component test: loading states display correctly during model initialization"
+  - "Component test: error messages display for missing model and failed inference"
+  - "Component test: confidence threshold slider filters displayed detections"
+  - "Component test: export button generates downloadable JSON"
+
+qa_notes: |
+  Test with Chrome 113+, Edge 113+, and Safari 18+.
+  Verify WebGPU detection and Wasm fallback manually.
+  Verify camera permission denial shows a helpful error.
+  Verify the app works fully offline once assets are cached.
+
+out_of_scope:
+  - "Authentication or user accounts"
+  - "Server-side inference or cloud fallback"
+  - "Database or persistent storage"
+  - "Brand-specific product recognition or true out-of-stock detection"
+  - "WebNN backend (experimental, future roadmap)"
+  - "Multiple simultaneous model comparison"
+
+implementation_skill: null
+
+technical_notes: |
+  Uses Vite + React + TypeScript. LiteRT.js via @litertjs/core.
+  Model config defines input shape, normalization, output decoding per model.
+  Mock inference engine for development and testing.
+  NMS post-processing may run in a Web Worker.
+  Canvas 2D for bounding box overlays.
