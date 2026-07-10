@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect x="10" y="15" width="80" height="70" rx="4" fill="#2563eb" opacity="0.1" stroke="#2563eb" stroke-width="3"/>
+  <line x1="10" y1="35" x2="90" y2="35" stroke="#2563eb" stroke-width="2"/>
+  <line x1="10" y1="55" x2="90" y2="55" stroke="#2563eb" stroke-width="2"/>
+  <line x1="10" y1="75" x2="90" y2="75" stroke="#2563eb" stroke-width="2"/>
+  <rect x="20" y="18" width="15" height="15" rx="2" fill="#3b82f6"/>
+  <rect x="40" y="18" width="15" height="15" rx="2" fill="#60a5fa"/>
+  <rect x="60" y="18" width="15" height="15" rx="2" fill="#3b82f6"/>
+  <rect x="25" y="38" width="15" height="15" rx="2" fill="#60a5fa"/>
+  <rect x="50" y="38" width="15" height="15" rx="2" fill="#3b82f6"/>
+  <rect x="30" y="58" width="15" height="15" rx="2" fill="#3b82f6"/>
+  <rect x="55" y="58" width="15" height="15" rx="2" fill="#60a5fa"/>
+  <circle cx="78" cy="72" r="18" fill="white" stroke="#16a34a" stroke-width="3"/>
+  <path d="M70 72 L76 78 L86 66" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

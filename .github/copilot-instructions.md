@@ -1,4 +1,4 @@
-# Copilot Instructions — {{PROJECT_NAME}}
+# Copilot Instructions — litertjs-shelf-inspector
 
 This project uses **OpenSpec** for spec-driven development. Full
 workflow: [`docs/OPENSPEC.md`](../docs/OPENSPEC.md).

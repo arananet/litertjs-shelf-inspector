@@ -1,4 +1,4 @@
-# AI Agent Instructions — {{PROJECT_NAME}}
+# AI Agent Instructions — litertjs-shelf-inspector
 
 This project uses **OpenSpec** for spec-driven development.
 **No production code without a spec.** This rule applies to every AI
